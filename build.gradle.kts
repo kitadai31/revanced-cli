@@ -17,7 +17,7 @@ dependencies {
     testImplementation(libs.kotlin.test)
 }
 
-kotlin { jvmToolchain(11) }
+//kotlin { jvmToolchain(11) }
 
 tasks {
     test {
