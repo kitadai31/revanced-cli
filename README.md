@@ -1,3 +1,1 @@
-# 💻 ReVanced CLI
-
-Command line application to use ReVanced.
+This is a special version of ReVanced CLI for Revancify
