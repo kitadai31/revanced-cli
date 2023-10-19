@@ -103,7 +103,7 @@ internal object PatchCommand : Runnable {
     private var keystorePath: String? = null
 
     @CommandLine.Option(
-        names = ["--password"], description = ["The password of the keystore to sign the patched APK file with"]
+        names = ["--password", "--keystore-password"], description = ["The password of the keystore to sign the patched APK file with"]
     )
     private var password = "ReVanced"
 
@@ -135,6 +135,28 @@ internal object PatchCommand : Runnable {
         names = ["--rip-lib"], description = ["Rip native libs from APK (x86_64 etc.)"]
     )
     private var ripLibs = arrayOf<String>()
+
+    @CommandLine.Option(
+        names = ["--alias"], description = ["Dummy argument for Revancify compatibility"]
+    )
+    private var dummy1 = ""
+
+    @CommandLine.Option(
+        names = ["--signer"], description = ["Dummy argument for Revancify compatibility"]
+    )
+    private var dummy2 = ""
+
+    @CommandLine.Option(
+        names = ["--keystore-entry-password"], description = ["Dummy argument for Revancify compatibility"]
+    )
+    private var dummy3 = ""
+
+    @CommandLine.Option(
+        names = ["-w", "--warn"],
+        description = ["Warn if a patch can not be found in the supplied patch bundles."],
+        showDefaultValue = ALWAYS
+    )
+    private var dummy4: Boolean = false
 
     override fun run() {
         // region Prepare
