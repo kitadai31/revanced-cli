@@ -137,7 +137,7 @@ internal object PatchCommand : Runnable {
     private var ripLibs = arrayOf<String>()
 
     @CommandLine.Option(
-        names = ["--alias"], description = ["Dummy argument for Revancify compatibility"]
+        names = ["--alias", "--keystore-entry-alias"], description = ["Dummy argument for Revancify compatibility"]
     )
     private var dummy1 = ""
 
