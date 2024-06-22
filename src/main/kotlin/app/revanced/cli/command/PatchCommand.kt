@@ -342,7 +342,23 @@ internal object PatchCommand : Runnable {
             }
 
             val inputZipFile = ZipFile(this)
-            inputZipFile.entries.removeIf { entry -> ripLibs.any { entry.fileName.startsWith("lib/$it") } }
+
+            /**
+             * A list of prefixes of filename which to be removed
+             */
+            val toBeRemoved = ripLibs.map { "lib/$it" }.toMutableList()
+
+            // If resources are decoded, remove all files in "res" directory of inputZipFile
+            // to prevent resource duplication
+            if (result.resourceFile != null) {
+                toBeRemoved.add("res/")
+            }
+
+            if (toBeRemoved.isNotEmpty()) {
+                inputZipFile.entries.removeIf { entry ->
+                    toBeRemoved.any { entry.fileName.startsWith(it) }
+                }
+            }
             // TODO: Do not compress result.doNotCompress
 
             file.copyEntriesFromFileAligned(
